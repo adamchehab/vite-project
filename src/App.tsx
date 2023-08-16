@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fruitsList } from "./data.jsx";
+import { fruitsList } from "./data.tsx";
 import "./App.css";
 
 function SearchBar({ title, placeholder, value, handler, style }) {
@@ -20,10 +20,7 @@ function ItemsList({ list }) {
 	return (
 		<ul>
 			{list.map((item) => (
-				<li key={item.id}>
-					{/* <input type="checkbox" /> */}
-					{item.name}
-				</li>
+				<li key={item.id}>{item.name}</li>
 			))}
 		</ul>
 	);
@@ -32,7 +29,7 @@ function ItemsList({ list }) {
 function SearchItemsList() {
 	const [searchItem, setSearchItem] = useState("");
 
-	const filteredFrutList = fruitsList.filter((item) =>
+	const filteredFruitList = fruitsList.filter((item) =>
 		item.name.toLowerCase().includes(searchItem.toLowerCase())
 	);
 
@@ -49,15 +46,19 @@ function SearchItemsList() {
 				handler={handleSearchItem}
 				style={{ marginLeft: "20px" }}
 			/>
-			<ItemsList list={filteredFrutList} />
+			<ItemsList list={filteredFruitList} />
 		</div>
 	);
 }
 
 export default function Page() {
 	return (
-		<>
+		<div className="bg-slate-100">
 			<SearchItemsList />
-		</>
+			<button type="button" className="btn btn-primary">
+				Primary
+			</button>
+			<h1 className="text-3xl font-thin underline text-blue-500">Hello world!</h1>
+		</div>
 	);
 }
